@@ -1,0 +1,7 @@
+# Ignore all files and directories
+*
+
+# Allow .gitignore and README.md
+!.gitignore
+!README.md
+!readme.md
