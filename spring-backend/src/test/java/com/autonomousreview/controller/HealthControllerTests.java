@@ -1,10 +1,12 @@
 package com.autonomousreview.controller;
 
+import com.autonomousreview.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,6 +23,9 @@ class HealthControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private UserRepository userRepository;
 
     @Test
     @DisplayName("GET /api/v1/health returns 200 with UP status and valid payload")
@@ -52,9 +57,11 @@ class HealthControllerTests {
     }
 
     @Test
-    @DisplayName("GET /api/v1/unknown-endpoint returns 404 Not Found (Negative Test)")
+    @org.springframework.security.test.context.support.WithMockUser
+    @DisplayName("GET /api/v1/unknown-endpoint returns 404 Not Found for authenticated request")
     void testUnknownEndpointReturns404() throws Exception {
         mockMvc.perform(get("/api/v1/unknown-endpoint"))
                 .andExpect(status().isNotFound());
     }
+
 }

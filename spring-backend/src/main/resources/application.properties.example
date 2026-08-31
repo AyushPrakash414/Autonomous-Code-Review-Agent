@@ -1,0 +1,20 @@
+server.port=8080
+
+spring.application.name=autonomous-code-review-control-plane
+
+# MongoDB Atlas connection string template
+# Example: mongodb+srv://<username>:<password>@<cluster>.mongodb.net/autonomous_review?retryWrites=true&w=majority
+spring.data.mongodb.uri=${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/autonomous_review}
+spring.data.mongodb.auto-index-creation=true
+
+# Actuator Endpoints
+management.endpoints.web.exposure.include=health,info,metrics
+management.endpoint.health.show-details=always
+
+# JWT Security Configuration
+app.jwt.secret=${JWT_SECRET:YOUR_SECURE_256_BIT_SECRET_KEY_HERE}
+app.jwt.expiration-ms=${JWT_EXPIRATION_MS:86400000}
+
+# Agent Service REST Client Configuration
+app.agent-service.url=${AGENT_SERVICE_URL:http://localhost:8000}
+app.agent-service.api-key=${AGENT_SERVICE_API_KEY:dev-internal-key}
