@@ -1,7 +1,34 @@
-# Ignore all files and directories
-*
+# Build directories
+target/
+dist/
+build/
+node_modules/
 
-# Allow .gitignore and README.md
-!.gitignore
-!README.md
-!readme.md
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.pytest_cache_local/
+.venv/
+env/
+venv/
+*.egg-info/
+
+# Java & IDE
+*.class
+*.jar
+*.war
+*.ear
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Environment & logs
+*.log
+.env
+.DS_Store
