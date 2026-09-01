@@ -1,17 +1,15 @@
 package com.autonomousreview;
 
-import com.autonomousreview.repository.UserRepository;
+import com.autonomousreview.config.TestRepositoryMockConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
+@Import(TestRepositoryMockConfig.class)
 class ControlPlaneApplicationTests {
-
-    @MockBean
-    private UserRepository userRepository;
 
     @Test
     void contextLoads() {

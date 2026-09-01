@@ -17,22 +17,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<Map<String, Object>> handleUserAlreadyExists(UserAlreadyExistsException ex) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", Instant.now().toString());
-        body.put("status", HttpStatus.CONFLICT.value());
-        body.put("error", "Conflict");
-        body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+        return buildResponse(HttpStatus.CONFLICT, "Conflict", ex.getMessage());
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Map<String, Object>> handleBadCredentials(BadCredentialsException ex) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", Instant.now().toString());
-        body.put("status", HttpStatus.UNAUTHORIZED.value());
-        body.put("error", "Unauthorized");
-        body.put("message", "Invalid email or password");
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
+        return buildResponse(HttpStatus.UNAUTHORIZED, "Unauthorized", "Invalid email or password");
+    }
+
+    @ExceptionHandler(GitHubConnectionNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleGitHubConnectionNotFound(GitHubConnectionNotFoundException ex) {
+        return buildResponse(HttpStatus.NOT_FOUND, "Not Found", ex.getMessage());
+    }
+
+    @ExceptionHandler(GitHubApiException.class)
+    public ResponseEntity<Map<String, Object>> handleGitHubApiException(GitHubApiException ex) {
+        return buildResponse(HttpStatus.BAD_REQUEST, "GitHub API Error", ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -47,5 +47,14 @@ public class GlobalExceptionHandler {
         body.put("error", "Bad Request");
         body.put("errors", errors);
         return ResponseEntity.badRequest().body(body);
+    }
+
+    private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus status, String error, String message) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", Instant.now().toString());
+        body.put("status", status.value());
+        body.put("error", error);
+        body.put("message", message);
+        return ResponseEntity.status(status).body(body);
     }
 }
