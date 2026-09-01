@@ -15,6 +15,9 @@ management.endpoint.health.show-details=always
 app.jwt.secret=${JWT_SECRET:YOUR_SECURE_256_BIT_SECRET_KEY_HERE}
 app.jwt.expiration-ms=${JWT_EXPIRATION_MS:86400000}
 
+# GitHub Webhook Configuration
+app.github.webhook-secret=${GITHUB_WEBHOOK_SECRET:YOUR_GITHUB_WEBHOOK_SECRET_HERE}
+
 # Agent Service REST Client Configuration
 app.agent-service.url=${AGENT_SERVICE_URL:http://localhost:8000}
 app.agent-service.api-key=${AGENT_SERVICE_API_KEY:dev-internal-key}

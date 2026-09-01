@@ -3,6 +3,7 @@ package com.autonomousreview.config;
 import com.autonomousreview.client.GitHubClient;
 import com.autonomousreview.repository.GitHubConnectionRepository;
 import com.autonomousreview.repository.RepositoryEntityRepository;
+import com.autonomousreview.repository.ReviewJobRepository;
 import com.autonomousreview.repository.UserRepository;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -28,6 +29,12 @@ public class TestRepositoryMockConfig {
     @Primary
     public RepositoryEntityRepository repositoryEntityRepository() {
         return Mockito.mock(RepositoryEntityRepository.class);
+    }
+
+    @Bean
+    @Primary
+    public ReviewJobRepository reviewJobRepository() {
+        return Mockito.mock(ReviewJobRepository.class);
     }
 
     @Bean

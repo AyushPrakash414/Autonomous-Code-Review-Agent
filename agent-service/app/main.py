@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timezone
 
 from app.core.config import settings
-from app.api.v1 import health
+from app.api.v1 import health, analyzer
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -24,6 +24,7 @@ app.add_middleware(
 
 # Mount Routers
 app.include_router(health.router, prefix=settings.API_V1_STR, tags=["Health"])
+app.include_router(analyzer.router, prefix=settings.API_V1_STR, tags=["Deterministic PR Analyzer"])
 
 
 @app.get("/health", tags=["Health"])
