@@ -508,33 +508,7 @@ cd Autonomous-Code-Review-Agent
 
 ---
 
-### 2️⃣ Configure Environment Variables
-Create a root `.env` file (or configure environment variables per service):
 
-```env
-# Spring Boot Control Plane
-SPRING_PROFILES_ACTIVE=dev
-DATABASE_URL=jdbc:postgresql://localhost:5432/codereview_db
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=postgres
-JWT_SECRET=your_super_secret_jwt_signing_key_32bytes_min
-GITHUB_WEBHOOK_SECRET=your_github_webhook_hmac_secret
-GITHUB_APP_ID=your_github_app_id
-GITHUB_PRIVATE_KEY_PATH=/path/to/private-key.pem
-
-# FastAPI Intelligence Plane
-FASTAPI_PORT=8000
-INTERNAL_AUTH_TOKEN=internal_shared_secret_token
-LLM_PROVIDER=gemini # Options: gemini | openai | ollama
-GEMINI_API_KEY=your_gemini_api_key
-OPENAI_API_KEY=your_openai_api_key
-OLLAMA_BASE_URL=http://localhost:11434
-
-# Docker Sandbox Settings
-SANDBOX_IMAGE=code-review-sandbox:latest
-SANDBOX_TIMEOUT_SECONDS=30
-SANDBOX_MEMORY_LIMIT=512m
-```
 
 ---
 
@@ -627,15 +601,6 @@ The project follows a disciplined **24-Phase Engineering Plan** where every phas
 
 ---
 
-## 📚 Engineering Documentation & Specifications
-
-For comprehensive technical specifications, review our core engineering guides:
-
-- 📘 [**GEMINI.md**](./GEMINI.md) — Non-negotiable engineering rules, anti-fake implementation policies, and definition of done.
-- 📐 [**architecture.md**](./architecture.md) — High-level system architecture, service boundaries, data schemas, and reliability protocols.
-- 🛠️ [**design.md**](./design.md) — Low-level design, routing algorithms, LangGraph workflows, and component interfaces.
-- 📋 [**phases.md**](./phases.md) — Detailed 24-phase implementation roadmap with concrete exit criteria.
-- 📑 [**prd.md**](./prd.md) — Product requirements document, user journeys, and functional requirements.
 
 ---
 
